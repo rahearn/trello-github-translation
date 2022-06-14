@@ -9,6 +9,6 @@ puts "Import to github complete"
 
 export.stories.each do |story|
   if story.attachments.count > 0
-    puts "#{story.card["shortUrl"]} has attachments"
+    puts "#{story.card["shortUrl"]} has attachments. Manually copy them over to Github"
   end
 end

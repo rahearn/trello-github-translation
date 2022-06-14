@@ -17,7 +17,11 @@ class TrelloExport
   end
 
   def skipped_list_ids
-    @skipped_list_ids ||= json["lists"].select { |l| ["DONE 🎉", "Delivered"].include?(l["name"]) }.map { |l| l["id"] }
+    @skipped_list_ids ||= json["lists"].select { |l| skipped_list_names.include?(l["name"].downcase) }.map { |l| l["id"] }
+  end
+
+  def skipped_list_names
+    ENV.fetch("SKIP_LIST_NAMES", "done 🎉,delivered").downcase.split(',')
   end
 
   def actions

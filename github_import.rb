@@ -13,7 +13,7 @@ class GithubImport
     stories.each do |story|
       puts "Creating issue for #{story.title}"
       client.create_issue(ENV["GITHUB_REPO"], story.title, story.body, labels: story.labels)
-      sleep 20
+      sleep ENV.fetch("SLEEP_INTERVAL", 20).to_i
     end
   end
 
